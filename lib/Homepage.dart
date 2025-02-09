@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'live_page.dart';
+import 'space_tarvel.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,7 +14,7 @@ class HomePage extends StatelessWidget {
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              "assets/space_bg3.png", // Ensure this is correctly added in pubspec.yaml
+              "assets/space_bg4.jpg",
               fit: BoxFit.cover,
             ),
           ),
@@ -20,9 +22,9 @@ class HomePage extends StatelessWidget {
           // Content Layout
           Column(
             children: [
-              const SizedBox(height: 50), // Adjust for status bar
+              const SizedBox(height: 50), // Status bar adjustment
 
-              // Profile Section with updated styling
+              // Profile Section
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -30,11 +32,11 @@ class HomePage extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        // Profile Avatar with added style
+                        // Profile Image
                         Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 3), // White border
+                            border: Border.all(color: Colors.white, width: 3),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.5),
@@ -44,7 +46,7 @@ class HomePage extends StatelessWidget {
                             ],
                           ),
                           child: const CircleAvatar(
-                            radius: 40, // Larger size for the profile icon
+                            radius: 40,
                             backgroundImage: AssetImage("assets/profile.png"),
                           ),
                         ),
@@ -59,9 +61,10 @@ class HomePage extends StatelessWidget {
                             Text(
                               "Abrar Ahmed",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
                         ),
@@ -94,14 +97,14 @@ class HomePage extends StatelessWidget {
 
               const Spacer(),
 
-              // Grid of Buttons with adjusted spacing
+              // Buttons Section
               Wrap(
-                spacing: 40.0, // Increased horizontal distance between icons
-                runSpacing: 40.0, // Increased vertical distance between rows
+                spacing: 40.0,
+                runSpacing: 40.0,
                 alignment: WrapAlignment.center,
                 children: [
                   _iconButton(context, "Puzzle", Icons.extension),
-                  _iconButton(context, "Quiz", Icons.quiz),
+                  _iconButton(context, "SpaceX", Icons.rocket),
                   _iconButton(context, "Feed", Icons.sort),
                   _iconButton(context, "Live", Icons.live_tv),
                   _iconButton(context, "Chats", Icons.rocket_launch),
@@ -110,13 +113,13 @@ class HomePage extends StatelessWidget {
 
               const Spacer(),
 
-              // Bottom Navigation Bar with updated styling
+              // Bottom Navigation Bar
               BottomNavigationBar(
-                backgroundColor: const Color(0xff1A237E), // Darker shade to blend with the space night background
-                selectedItemColor: const Color(0xffFFEB3B), // Starry Yellow for selected icon
-                unselectedItemColor: const Color(0xffC0C0C0), // Moonlit Silver for unselected icons
-                currentIndex: 1, // Default selected tab is "Home"
-                elevation: 8, // Slight elevation for shadow effect
+                backgroundColor: const Color(0xff1A237E),
+                selectedItemColor: const Color(0xffFFEB3B),
+                unselectedItemColor: const Color(0xffC0C0C0),
+                currentIndex: 1, // Default tab selected is "Home"
+                elevation: 8, // Shadow effect
                 items: const [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.history),
@@ -128,7 +131,7 @@ class HomePage extends StatelessWidget {
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.settings),
-                    label: "Setting",
+                    label: "Settings",
                   ),
                 ],
               ),
@@ -139,57 +142,61 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Function to create icon buttons with enhanced visibility
   Widget _iconButton(BuildContext context, String label, IconData icon) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        // Increase the size of the icons and make them stand out
-        double iconSize = constraints.maxWidth * 0.18; // 18% of the available width
-
-        return Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("$label Clicked!")),
-                );
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0xffFF8C00), Color(0xffFFD700)], // Bright gradient
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.yellow.withOpacity(0.5), // Add a glow effect
-                      blurRadius: 10,
-                      spreadRadius: 5,
-                    ),
-                  ],
-                ),
-                padding: EdgeInsets.all(iconSize * 0.25), // Padding based on icon size
-                child: Icon(
-                  icon,
-                  size: iconSize,
-                  color: Colors.black, // Contrast color for the icon
-                ),
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            if (label == "Live") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LiveTrackingPage()),
+              );
+            } else if (label == "SpaceX") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SpaceTravelHome()),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("$label Clicked!")),
+              );
+            }
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [Color(0xffFF8C00), Color(0xffFFD700)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.yellow.withOpacity(0.5),
+                  blurRadius: 10,
+                  spreadRadius: 5,
+                ),
+              ],
             ),
-            const SizedBox(height: 5),
-            Text(
-              label,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold, // Make the label bold for visibility
-              ),
+            padding: const EdgeInsets.all(15),
+            child: Icon(
+              icon,
+              size: 30,
+              color: Colors.black, // Contrast color for the icon
             ),
-          ],
-        );
-      },
+          ),
+        ),
+        const SizedBox(height: 5),
+        Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }

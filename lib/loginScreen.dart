@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'homePage.dart'; // Import the HomePage widget
+import 'homePage.dart';
 
 class loginScreen extends StatelessWidget {
   const loginScreen({Key? key}) : super(key: key);
@@ -57,7 +57,7 @@ class loginScreen extends StatelessWidget {
                           'Gmail',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xffB81736), // adding color to Gmail
+                            color: Color(0xffB81736),
                           ),
                         ),
                       ),
@@ -65,9 +65,9 @@ class loginScreen extends StatelessWidget {
                     const TextField(
                       decoration: InputDecoration(
                         suffixIcon: Icon(
-                          Icons.visibility_off,
+                          Icons.visibility_off,//password dekabe na
                           color: Colors.grey,
-                        ), // password won't be visible
+                        ),
                         label: Text(
                           'Password',
                           style: TextStyle(
@@ -85,7 +85,7 @@ class loginScreen extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 17,
-                          color: Color(0xff281537), // adding color
+                          color: Color(0xff281537),
                         ),
                       ),
                     ),
@@ -97,7 +97,7 @@ class loginScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                         gradient: const LinearGradient(
                           colors: [
-                            Color(0xffB81736), // adding color to sign in
+                            Color(0xffB81736),
                             Color(0xff281537),
                           ],
                         ),

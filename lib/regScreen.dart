@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'loginScreen.dart'; // Import the login screen
+import 'loginScreen.dart';
 
 class RegScreen extends StatelessWidget {
   const RegScreen({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class RegScreen extends StatelessWidget {
             width: double.infinity,
             decoration: const BoxDecoration(
               gradient: LinearGradient(colors: [
-                Color(0xff8e44ad), // Modern purple
+                Color(0xff8e44ad),
                 Color(0xffd35400),
               ]),
             ),
